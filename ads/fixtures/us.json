@@ -1,0 +1,5 @@
+[{"model": "ads.Users",
+    "pk": 1,
+  "fields": {
+        "name": "\u0418\u0432\u0430\u043d",
+        "loc": "1"}}]
