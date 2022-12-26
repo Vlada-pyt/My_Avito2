@@ -7,6 +7,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('api-auth/', include('rest_framework.urls')),
     path('cat/', include('ads.cat_urls')),
     path('ads/', include('ads.urls')),
     path('users/', include('ads.users_url')),

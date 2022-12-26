@@ -44,7 +44,7 @@ class Users(models.Model):
 class Ads(models.Model):
     name = models.CharField(max_length=200)
     author_id = models.ForeignKey(Users, on_delete=models.CASCADE, null=True)
-    price = models.CharField(max_length=200, null=True)
+    price = models.IntegerField(null=True)
     description = models.CharField(max_length=1000, null=True)
     is_published = models.BooleanField(default=False)
     image = models.ImageField(upload_to='logos/', null=True)
