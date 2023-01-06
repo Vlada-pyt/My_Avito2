@@ -11,6 +11,8 @@ urlpatterns = [
     path('cat/', include('ads.cat_urls')),
     path('ads/', include('ads.urls')),
     path('users/', include('ads.users_url')),
+    path('auth/', include('authentication.auth_urls')),
+    path('selection/', include('ads.selection_urls')),
 
 ]
 

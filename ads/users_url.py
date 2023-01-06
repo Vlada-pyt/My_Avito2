@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from ads import views
+
+
 from ads.views import LocationViewSet
 
 urlpatterns = [
@@ -10,6 +12,7 @@ urlpatterns = [
     path('create/', views.UsersCreateView.as_view()),
     path('<int:pk>/update/', views.UsersUpdateView.as_view()),
     path('<int:pk>/delete/', views.UsersDeleteView.as_view()),
+
 ]
 
 

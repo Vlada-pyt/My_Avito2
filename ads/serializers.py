@@ -1,10 +1,11 @@
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
-from ads.models import Location, Users, Ads, Categories
+from ads.models import Location, Ads, Categories, Users, Selection
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
-    location = serializers.SlugRelatedField(required=False, many=True, slug_field='name', queryset=Location.objects.all())
+    location = serializers.SlugRelatedField(required=False, many=True, slug_field='name',
+                                            queryset=Location.objects.all())
 
     def is_valid(self, *, raise_exception=False):
         self._location = self.initial_data.pop('location', [])
@@ -23,7 +24,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
-    location = serializers.SlugRelatedField(required=False, many=True, slug_field='name', queryset=Location.objects.all())
+    location = serializers.SlugRelatedField(required=False, many=True, slug_field='name',
+                                            queryset=Location.objects.all())
 
     def is_valid(self, *, raise_exception=False):
         self._location = self.initial_data.pop('location', [])
@@ -41,13 +43,14 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class UserDetailSerializer(serializers.ModelSerializer):
     location = serializers.SlugRelatedField(many=True, slug_field='name', queryset=Location.objects.all())
+
     class Meta:
         model = Users
         exclude = ['password']
         # fields = '__all__'
+
 
 class UserListSerializer(serializers.ModelSerializer):
     location = serializers.SlugRelatedField(many=True, slug_field='name', queryset=Location.objects.all())
@@ -92,4 +95,71 @@ class AdsListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+# class SelectionCreateSerializer(serializers.ModelSerializer):
+#     ads = serializers.SlugRelatedField(required=False, many=True,
+#                                             slug_field='name',
+#                                             queryset=Ads.objects.all())
+#     items = AdsSerializer(many=True)
+#
+#     def is_valid(self, *, raise_exception=False):
+#         self.ads = self.initial_data.pop('ads', [])
+#         return super().is_valid(raise_exception=raise_exception)
+#
+#     def create(self, validated_data):
+#         new_selection = Selection.objects.create(**validated_data)
+#         for ad in self.ads:
+#             ad, _ = Ads.objects.get_or_create(name=ad)
+#             new_selection.ads.add(ad)
+#         return new_selection
+#
+#     class Meta:
+#         model = Selection
+#         fields = '__all__'
 
+
+# class SelectionUpdateSerializer(serializers.ModelSerializer):
+#     ads = serializers.SlugRelatedField(required=False, many=True,
+#                                        slug_field='name',
+#                                        queryset=Ads.objects.all())
+#
+#     def is_valid(self, *, raise_exception=False):
+#         self.ads = self.initial_data.pop('ads', [])
+#         return super().is_valid(raise_exception=raise_exception)
+#     def save(self, **kwargs):
+#         selection = super().save(**kwargs)
+#         for ad in self._ads:
+#             ad, _ = Ads.objects.get_or_create(name=ad)
+#             selection.ads.add(ad)
+#         return selection
+
+    # class Meta:
+    #     model = Selection
+    #     fields = '__all__'
+
+
+class SelectionDetailSerializer(serializers.ModelSerializer):
+    # ads = serializers.SlugRelatedField(required=False, many=True,
+    #                                    slug_field='name',
+    #                                    queryset=Ads.objects.all())
+    user = SlugRelatedField(slug_field='username', queryset=Users.objects.all())
+    items = AdsListSerializer(many=True)
+    class Meta:
+        model = Selection
+        fields = '__all__'
+
+
+class SelectionListSerializer(serializers.ModelSerializer):
+    # ads = serializers.SlugRelatedField(required=False, many=True,
+    #                                    slug_field='name',
+    #                                    queryset=Ads.objects.all())
+
+    class Meta:
+        model = Selection
+        fields = ['id', 'name']
+
+
+class SelectionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Selection
+        fields = '__all__'
