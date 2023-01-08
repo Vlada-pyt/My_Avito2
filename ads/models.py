@@ -40,7 +40,6 @@ class Users(AbstractUser):
     password = models.CharField(max_length=200, null=True)
     role = models.CharField(max_length=200, choices=UserRoles.choices)
     age = models.IntegerField(null=True)
-    location = models.IntegerField(null=True)
     location = models.ManyToManyField(Location, null=True)
 
 

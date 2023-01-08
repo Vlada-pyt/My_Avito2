@@ -9,9 +9,9 @@ urlpatterns = [
     path('', views.index),
     path('api-auth/', include('rest_framework.urls')),
     path('cat/', include('ads.cat_urls')),
-    path('ads/', include('ads.urls')),
+    path('ads/', include('ads.image_urls')),
     path('users/', include('ads.users_url')),
-    path('auth/', include('authentication.auth_urls')),
+    path('auth/', include('My_Avito.auth_urls')),
     path('selection/', include('ads.selection_urls')),
 
 ]
