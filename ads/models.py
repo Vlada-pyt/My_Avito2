@@ -1,10 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MinLengthValidator, MinValueValidator
+
+from ads.validators import check_email, check_birth_date
 
 
 class Categories(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(unique=True, null=True, max_length=50)
+    slug = models.CharField(unique=True, null=True, max_length=10,
+                            validators=[MinLengthValidator(5)])
 
     def __str__(self):
         return self.name
@@ -15,9 +20,9 @@ class Categories(models.Model):
 
 
 class Location(models.Model):
-    name = models.CharField(max_length=200)
-    lat = models.FloatField()
-    lng = models.FloatField()
+    name = models.CharField(max_length=200, null=True)
+    lat = models.DecimalField(max_digits=8, decimal_places=6, null=True)
+    lng = models.DecimalField(max_digits=8, decimal_places=6, null=True)
 
     def __str__(self):
         return self.name
@@ -36,13 +41,12 @@ class UserRoles(models.TextChoices):
 class Users(AbstractUser):
     first_name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, null=True)
-    # username = models.CharField(max_length=200, null=True)
     password = models.CharField(max_length=200, null=True)
     role = models.CharField(max_length=200, choices=UserRoles.choices)
     age = models.IntegerField(null=True)
-    location = models.ManyToManyField(Location, null=True)
-
-
+    birth_date = models.DateField(validators=[check_birth_date], blank=True, null=True)
+    locations = models.ManyToManyField(Location)
+    email = models.EmailField(unique=True, null=True, max_length=254, validators=[check_email])
     def __str__(self):
         return self.username
 
@@ -51,16 +55,14 @@ class Users(AbstractUser):
         verbose_name_plural = "Пользователи"
 
 
-
-
 class Ads(models.Model):
-    name = models.CharField(max_length=200)
-    author_id = models.ForeignKey(Users, on_delete=models.CASCADE, null=True)
-    price = models.IntegerField(null=True)
-    description = models.CharField(max_length=1000, null=True)
+    name = models.CharField(max_length=200, null=False, blank=False, validators=[MinLengthValidator(10)])
+    author = models.ForeignKey("Users", related_name="ads", on_delete=models.CASCADE, null=True)
+    price = models.IntegerField(null=True, validators=[MinValueValidator(0)])
+    description = models.TextField(null=False, blank=False)
     is_published = models.BooleanField(default=False)
     image = models.ImageField(upload_to='logos/', null=True)
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey("Categories", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

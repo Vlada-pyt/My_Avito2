@@ -8,7 +8,7 @@ def csv_to_json(csvFilePath, jsonFilePath):
 
     # read csv file
     with open(csvFilePath, encoding='utf-8') as csvf:
-        # load csv file data using csv library's dictionary reader
+        # load csv file fixtures using csv library's dictionary reader
         csvReader = csv.DictReader(csvf)
 
         # convert each csv row into python dict

@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k_1&*yzge&22pc!d@#ds(14nsn9xq!_^a%rbc#k!13huew21ud'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = "True"
 
 ALLOWED_HOSTS = []
 
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'ads',
+
 
 ]
 
@@ -49,7 +50,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
+        'APP_DIRS': "True",
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -105,9 +106,9 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = "True"
 
-USE_TZ = True
+USE_TZ = "True"
 
 
 # Static files (CSS, JavaScript, Images)

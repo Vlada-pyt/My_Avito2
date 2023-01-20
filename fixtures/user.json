@@ -6,10 +6,11 @@
         "first_name": "\u041f\u0430\u0432\u0435\u043b",
         "last_name": "\u041d\u0438\u043a\u0438\u0444\u043e\u0440\u043e\u0432",
         "username": "pnikifirov",
-        "password": "gZvptL",
+        "password": "gZvptL", "birth_date": "2000-10-12",
         "role": "member",
         "age": "21",
-        "location": "1"
+        "locations": ["1"]
+
     }},
     {"model": "ads.Users",
     "pk": 2,
@@ -18,10 +19,11 @@
         "first_name": "\u0410\u043b\u044c\u0431\u0438\u043d\u0430",
         "last_name": "\u0418\u0433\u043d\u0430\u0442\u044c\u0435\u0432\u0430",
         "username": "abiba_1341",
-        "password": "4fVqL2",
+        "password": "4fVqL2", "birth_date": "2000-10-12",
         "role": "moderator",
         "age": "24",
-        "location": "3"
+        "locations": ["2"]
+
     }},
     {"model": "ads.Users",
     "pk": 3,
@@ -31,9 +33,10 @@
         "last_name": "\u0421\u044b\u0441\u043e\u0435\u0432",
         "username": "vanya777",
         "password": "o535pj",
-        "role": "admin",
+        "role": "admin", "birth_date": "2003-10-12",
         "age": "29",
-        "location": "8"
+        "locations": ["3"]
+
     }},
     {"model": "ads.Users",
     "pk": 4,
@@ -43,9 +46,10 @@
         "last_name": "\u0411\u0435\u0440\u043a\u0443\u0442\u043e\u0432\u0430",
         "username": "orlanfree",
         "password": "d49rSO",
-        "role": "moderator",
+        "role": "moderator", "birth_date": "2000-10-12",
         "age": "19",
-        "location": "10"
+        "locations": ["4"]
+
     }},
     {"model": "ads.Users",
     "pk": 5,
@@ -55,9 +59,10 @@
         "last_name": "\u0418\u0432\u0430\u043d\u043e\u0432\u0430",
         "username": "galina_ivanova",
         "password": "wCqlVE",
-        "role": "member",
+        "role": "member", "birth_date": "2000-10-12",
         "age": "41",
-        "location": "2"
+        "locations": ["5"]
+
     }},
     {"model": "ads.Users",
     "pk": 6,
@@ -66,10 +71,11 @@
         "first_name": "\u041f\u0435\u0442\u0440",
         "last_name": "\u0411\u043e\u0439\u0447\u0435\u043d\u043a\u043e",
         "username": "petr_bo",
-        "password": "xuR2jf",
+        "password": "xuR2jf", "birth_date": "2000-10-12",
         "role": "member",
         "age": "37",
-        "location": "4"
+        "locations": ["6"]
+
     }},
     {"model": "ads.Users",
     "pk": 7,
@@ -78,10 +84,11 @@
         "first_name": "\u041d\u0438\u043a\u0438\u0442\u0430",
         "last_name": "",
         "username": "nikitapro",
-        "password": "gzP4vR",
+        "password": "gzP4vR", "birth_date": "2000-10-12",
         "role": "member",
         "age": "26",
-        "location": "7"
+        "locations": ["7"]
+
     }},
     {"model": "ads.Users",
     "pk": 8,
@@ -91,9 +98,10 @@
         "last_name": "\u041f\u0435\u0442\u0443\u0448\u043e\u043a",
         "username": "riverna",
         "password": "zo0rj6",
-        "role": "member",
+        "role": "member", "birth_date": "2000-10-12",
         "age": "24",
-        "location": "5"
+        "locations": ["8"]
+
     }},
     {"model": "ads.Users",
     "pk": 9,
@@ -103,9 +111,10 @@
         "last_name": "\u0418\u0431\u0440\u0430\u0433\u0438\u043c\u043e\u0432\u0430",
         "username": "gulnara321",
         "password": "daMocL",
-        "role": "moderator",
+        "role": "moderator", "birth_date": "1995-10-12",
         "age": "22",
-        "location": "9"
+        "locations": ["9"]
+
     }},
     {"model": "ads.Users",
     "pk": 10,
@@ -114,9 +123,10 @@
         "first_name": "\u0411\u043e\u0440\u0438\u0441",
         "last_name": "\u0417\u0430\u0439\u043a\u0430",
         "username": "dragon84",
-        "password": "sasha123456",
+        "password": "sasha123456", "birth_date": "2000-10-12",
         "role": "member",
         "age": "35",
-        "location": "6"
+        "locations": ["10"]
+
     }}
 ]

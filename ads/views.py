@@ -72,18 +72,20 @@ class CategoryDetailView(DetailView):
 @method_decorator(csrf_exempt, name='dispatch')
 class CategoryCreateView(CreateView):
     model = Categories
-    fields = ["name"]
+    fields = ["name", "slug"]
 
     def post(self, request, *args, **kwargs):
         category_data = json.loads(request.body)
 
         category = Categories.objects.create(
             name=category_data["name"],
+            slug=category_data["slug"],
         )
 
         return JsonResponse({
             "id": category.id,
             "name": category.name,
+            "slug": category.slug,
         })
 
 
@@ -209,45 +211,6 @@ class LocationViewSet(ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationModelSerializer
 
-
-# class SelectionListView(ListAPIView):
-#     queryset = Selection.objects.all()
-#     serializer_class = SelectionListSerializer
-#
-#
-# class SelectionCreateView(CreateAPIView):
-#     queryset = Selection.objects.all()
-#     serializer_class = SelectionCreateSerializer
-#     permission_classes = [IsAuthenticated]
-#
-#
-# class SelectionUpdateView(UpdateAPIView):
-#     queryset = Selection.objects.all()
-#     serializer_class = SelectionUpdateSerializer
-#     default_permission = [AllowAny()]
-#     permissions = {
-#         "retrieve": [IsAuthenticated()]
-#     }
-#
-#     def get_permissions(self):
-#         return self.permissions.get(self.action, self.default_permission)
-#
-#
-# class SelectionDeleteView(DestroyAPIView):
-#     queryset = Selection.objects.all()
-#     serializer_class = SelectionDetailSerializer
-#     default_permission = [AllowAny()]
-#     permissions = {
-#         "retrieve": [IsAuthenticated()]
-#     }
-#
-#     def get_permissions(self):
-#         return self.permissions.get(self.action, self.default_permission)
-#
-#
-# class SelectionDetailView(RetrieveAPIView):
-#     queryset = Selection.objects.all()
-#     serializer_class = SelectionDetailSerializer
 class SelectionViewSet(ModelViewSet):
     queryset = Selection.objects.all()
     default_serializer = SelectionSerializer
