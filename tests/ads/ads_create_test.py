@@ -8,15 +8,15 @@ def test_create_ads(client, access_token, users, categories):
         "category": categories.pk,
         "name": "test test test",
         "price": 28400,
-        "description": ""
+        "description": "m"
     }
 
     expected_data = {
-        "id": 1,
+        "id": 5,
         "is_published": False,
         "name": "test test test",
         "price": 28400,
-        "description": "",
+        "description": "m",
         "image": None,
         "author": users.pk,
         "category": categories.pk

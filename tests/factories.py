@@ -26,3 +26,4 @@ class AdsFactory(factory.django.DjangoModelFactory):
 
 
 
+

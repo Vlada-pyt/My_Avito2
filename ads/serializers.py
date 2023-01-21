@@ -14,11 +14,21 @@ class UserCreateSerializer(serializers.ModelSerializer):
         self._locations = self.initial_data.pop('locations', [])
         return super().is_valid(raise_exception=raise_exception)
 
+    # def create(self, validated_data):
+    #     new_user = Users.objects.create(**validated_data)
+    #     for loc in self._locations:
+    #         locations, _ = Location.objects.get_or_create(name=loc)
+    #         new_user.locations.add(locations)
+    #     return new_user
+
     def create(self, validated_data):
+        pas = validated_data.pop("password")
         new_user = Users.objects.create(**validated_data)
+        new_user.set_password(pas)
+        new_user.save()
         for loc in self._locations:
-            locations, _ = Location.objects.get_or_create(name=loc)
-            new_user.locations.add(locations)
+            location, _ = Location.objects.get_or_create(name=loc)
+            new_user.locations.add(location)
         return new_user
 
     class Meta:
@@ -87,12 +97,12 @@ class AdsDetailSerializer(serializers.ModelSerializer):
 
 
 class AdsListSerializer(serializers.ModelSerializer):
-    author = SlugRelatedField(slug_field='username', queryset=Users.objects.all())
-    category = SlugRelatedField(slug_field='name', queryset=Categories.objects.all())
-    locations = serializers.SerializerMethodField()
-
-    def get_locations(self, ads):
-         return [loc.name for loc in ads.author.locations.all()]
+    author = SlugRelatedField(slug_field="id", queryset=Users.objects.all())
+    category = SlugRelatedField(slug_field="id", queryset=Categories.objects.all())
+    # locations = serializers.SerializerMethodField()
+    #
+    # def get_locations(self, ads):
+    #      return [loc.name for loc in ads.author.locations.all()]
 
     class Meta:
         model = Ads

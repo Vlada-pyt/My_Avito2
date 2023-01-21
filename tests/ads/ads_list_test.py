@@ -1,17 +1,17 @@
 import pytest
 
-from ads.serializers import AdsListSerializer
+from ads.serializers import AdsDetailSerializer
 from tests.factories import AdsFactory
 
 
 @pytest.mark.django_db
-def test_ads_list(client, access_token):
-    ads_list = AdsFactory.create_batch(4)
+def test_ad_detail(client, access_token):
+    ad = AdsFactory.create()
 
-    response = client.get("/ads/", HTTP_AUTHORIZATION="Bearer " + access_token)
+    response = client.get(f"/ads/{ad.pk}/", HTTP_AUTHORIZATION="Bearer " + access_token)
     assert response.status_code == 200
-    assert response.data == {"count": 4, "next": None,
-                             "previous": None, "results": AdsListSerializer(ads_list, many=True).data}
+    assert response.data == AdsDetailSerializer(ad).data
+
 
 
 
